@@ -16,11 +16,8 @@ jobs:
       matrix:
         include:
           - os: ubuntu-22.04
-            build_args: ''
           - os: macos-latest
-            build_args: ''
           - os: windows-latest
-            build_args: ''
 
     runs-on: ${{ matrix.os }}
 
@@ -33,9 +30,6 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Enable Corepack
-        run: corepack enable
-
       - name: Install Linux dependencies
         if: runner.os == 'Linux'
         run: |
@@ -43,28 +37,13 @@ jobs:
           sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-engines
+        run: npm install
 
       - name: Compile
-        run: yarn compile-client
+        run: npm run compile-client
 
-      - name: Package (Linux)
-        if: runner.os == 'Linux'
-        run: yarn package
-        env:
-          VSCODE_BUILD_LINUX: '1'
-
-      - name: Package (macOS)
-        if: runner.os == 'macOS'
-        run: yarn package
-        env:
-          VSCODE_BUILD_MAC: '1'
-
-      - name: Package (Windows)
-        if: runner.os == 'Windows'
-        run: yarn package
-        env:
-          VSCODE_BUILD_WIN32: '1'
+      - name: Package
+        run: npm run package
 
       - name: Upload Linux artifacts
         if: runner.os == 'Linux'
