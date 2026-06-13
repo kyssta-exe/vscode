@@ -45,7 +45,7 @@ jobs:
         run: cd build && npm install --ignore-scripts
 
       - name: Compile
-        run: node node_modules/gulp/bin/gulp.js compile-client
+        run: node --max-old-space-size=8192 node_modules/gulp/bin/gulp.js compile-client
 
       - name: Package
         run: node node_modules/gulp/bin/gulp.js vscode-${{ runner.os == 'Linux' && 'linux-x64' || runner.os == 'macOS' && 'darwin-arm64' || 'win32-x64' }}
