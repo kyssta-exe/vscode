@@ -43,7 +43,7 @@ jobs:
           sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-scripts --ignore-engines
+        run: yarn --frozen-lockfile --ignore-engines
 
       - name: Compile
         run: yarn compile-client
