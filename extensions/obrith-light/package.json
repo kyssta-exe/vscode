@@ -1,0 +1,22 @@
+{
+  "name": "obrith-light",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.0.0",
+  "publisher": "Obrith",
+  "license": "MIT",
+  "engines": {
+    "vscode": "*"
+  },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "id": "Obrith Light",
+        "label": "%themeLabel%",
+        "uiTheme": "vs",
+        "path": "./themes/obrith-light.json"
+      }
+    ]
+  }
+}
